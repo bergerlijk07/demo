@@ -29,3 +29,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Build and Push Docker Image
+      uses: GlueOps/github-actions-build-push-containers@v0.3.6
+      with:
+        image: bergerlijk/demo
+        registry: "docker.io"
+        dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
+        dockerhub_password: ${{ secrets.DOCKERHUB_PASSWORD }}
